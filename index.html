@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+<label>
+	<span>pattern: </span>
+	<input type="text" id="pattern">
+</label>
+<label>
+	<span>source: </span>
+	<input type="text" id="source">
+</label>
+<button id="btn">校验</button>
+<div>
+	源字符为: <span id="sourceText"></span><br>
+	校验规则为: <span id="patternText"></span><br>
+	校验结果为: {
+		校验结果: <span id="result"></span>,
+		对应位置: <span id="resultArr"></span>
+	}
+</div>
+<script src="FSM.js"></script>
+<script>
+	btn.onclick = () => {
+		const resultValue = FSM(pattern.value, source.value)
+		sourceText.innerHTML = source.value
+		patternText.innerHTML = pattern.value
+		result.innerHTML = !!resultValue.length ? '成功' : '失败'
+		resultArr.innerHTML = JSON.stringify(resultValue)
+		pattern.value = '';
+		source.value = '';
+	}
+</script>
+</body>
+</html>
